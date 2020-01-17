@@ -2,7 +2,7 @@ package com.example.newsapp;
 
 import android.app.Application;
 
-import com.example.newsapp.repository.remote.BaseApi;
+import com.example.newsapp.repository.remote.Api;
 
 import java.io.IOException;
 
@@ -39,7 +39,7 @@ public class NewsApp extends Application {
                     public Response intercept(Interceptor.Chain chain) throws IOException {
                         Request original = chain.request();
                         Request request = original.newBuilder()
-                                .header("X-API-Key", BaseApi.apiKey)
+                                .header("X-API-Key", Api.apiKey)
                                 .method(original.method(), original.body())
                                 .build();
 
@@ -49,7 +49,7 @@ public class NewsApp extends Application {
                 .build();
 
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(BaseApi.BASE_API)
+                .baseUrl(Api.BASE_API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

@@ -1,4 +1,4 @@
-package com.example.newsapp.ui;
+package com.example.newsapp.ui.news_list_screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.newsapp.R;
 
-public class MainActivity extends AppCompatActivity {
+public class NewsListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

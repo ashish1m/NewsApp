@@ -1,6 +1,6 @@
 package com.example.newsapp.repository.model;
 
-import com.example.newsapp.db.entity.Article;
+import com.example.newsapp.repository.db.entity.Article;
 
 import java.util.ArrayList;
 

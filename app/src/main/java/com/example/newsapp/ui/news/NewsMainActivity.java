@@ -1,15 +1,17 @@
 package com.example.newsapp.ui.news;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
-import com.example.newsapp.NewsApp;
 import com.example.newsapp.R;
-import com.example.newsapp.db.entity.Category;
+import com.example.newsapp.ui.news.news_list.NewsListFragment;
+import com.example.newsapp.repository.db.entity.Category;
 import com.example.newsapp.viewmodel.CategoryViewModel;
 
 import java.util.List;
@@ -20,6 +22,14 @@ public class NewsMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_main);
+        loadFragment(NewsListFragment.newInstance());
+    }
+
+    private void loadFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
 
         CategoryViewModel categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
         subscribeUi(categoryViewModel.getCategories());

@@ -1,4 +1,4 @@
-package com.example.newsapp.db.entity;
+package com.example.newsapp.repository.db.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

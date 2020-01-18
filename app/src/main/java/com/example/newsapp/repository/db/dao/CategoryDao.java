@@ -1,4 +1,4 @@
-package com.example.newsapp.db.dao;
+package com.example.newsapp.repository.db.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.newsapp.db.entity.Category;
+import com.example.newsapp.repository.db.entity.Category;
 
 import java.util.List;
 

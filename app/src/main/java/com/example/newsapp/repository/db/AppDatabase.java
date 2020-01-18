@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.newsapp.db;
+package com.example.newsapp.repository.db;
 
 import android.content.Context;
 
@@ -30,11 +30,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.newsapp.AppExecutors;
 import com.example.newsapp.NewsApp;
-import com.example.newsapp.db.converter.CategoryConverter;
-import com.example.newsapp.db.dao.ArticleDao;
-import com.example.newsapp.db.dao.CategoryDao;
-import com.example.newsapp.db.entity.Article;
-import com.example.newsapp.db.entity.Category;
+import com.example.newsapp.repository.db.converter.CategoryConverter;
+import com.example.newsapp.repository.db.dao.ArticleDao;
+import com.example.newsapp.repository.db.dao.CategoryDao;
+import com.example.newsapp.repository.db.entity.Article;
+import com.example.newsapp.repository.db.entity.Category;
 import com.example.newsapp.repository.model.NewsResponse;
 import com.example.newsapp.repository.remote.NewsService;
 

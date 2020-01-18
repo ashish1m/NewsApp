@@ -2,7 +2,7 @@ package com.example.newsapp;
 
 import android.app.Application;
 
-import com.example.newsapp.db.AppDatabase;
+import com.example.newsapp.repository.db.AppDatabase;
 import com.example.newsapp.repository.remote.Api;
 
 import okhttp3.OkHttpClient;

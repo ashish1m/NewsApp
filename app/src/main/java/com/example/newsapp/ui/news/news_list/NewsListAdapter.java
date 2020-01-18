@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,14 +20,19 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
 
 
     private ArrayList<Articles> mArticleList;
+    private OnItemClickListener mListener;
 
-    public NewsListAdapter(ArrayList<Articles> articleList){
+    public NewsListAdapter(ArrayList<Articles> articleList) {
         mArticleList = articleList;
     }
 
     public void updateList(ArrayList<Articles> articleList) {
         mArticleList = articleList;
         notifyDataSetChanged();
+    }
+
+    public void addOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
     }
 
     @NonNull
@@ -46,6 +52,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
                 .load(article.getUrlToImage())
                 .centerCrop()
                 .into(holder.mNewsImageIv);
+
+        holder.mMainLayoutCv.setTag(article);
     }
 
     @Override
@@ -56,17 +64,36 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
         return 0;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    interface OnItemClickListener {
+        void onItemClick(Articles article);
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView mNewsImageIv;
         TextView mNewsTitleTv;
         TextView mNewsDescriptionTv;
+        CardView mMainLayoutCv;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             mNewsImageIv = itemView.findViewById(R.id.iv_newsImage);
             mNewsTitleTv = itemView.findViewById(R.id.tv_title);
             mNewsDescriptionTv = itemView.findViewById(R.id.tv_description);
+            mMainLayoutCv = itemView.findViewById(R.id.cv_mainLayout);
+
+            mMainLayoutCv.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.cv_mainLayout:
+                    if (mListener !=null){
+                        mListener.onItemClick((Articles) v.getTag());
+                    }
+                    break;
+            }
         }
     }
 }

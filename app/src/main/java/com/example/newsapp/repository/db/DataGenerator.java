@@ -1,9 +1,6 @@
-package com.example.newsapp.db;
+package com.example.newsapp.repository.db;
 
-import com.example.newsapp.NewsApp;
-import com.example.newsapp.db.entity.Article;
-import com.example.newsapp.db.entity.Category;
-import com.example.newsapp.repository.remote.NewsService;
+import com.example.newsapp.repository.db.entity.Category;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,7 +9,7 @@ import androidx.lifecycle.MediatorLiveData;
 
 import com.example.newsapp.DataRepository;
 import com.example.newsapp.NewsApp;
-import com.example.newsapp.db.entity.Article;
+import com.example.newsapp.repository.db.entity.Article;
 
 import java.util.List;
 

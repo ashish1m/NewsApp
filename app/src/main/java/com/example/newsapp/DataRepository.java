@@ -3,9 +3,9 @@ package com.example.newsapp;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
-import com.example.newsapp.db.AppDatabase;
-import com.example.newsapp.db.entity.Article;
-import com.example.newsapp.db.entity.Category;
+import com.example.newsapp.repository.db.AppDatabase;
+import com.example.newsapp.repository.db.entity.Article;
+import com.example.newsapp.repository.db.entity.Category;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.newsapp.R;
-import com.example.newsapp.ui.news_list_screen.NewsListActivity;
+import com.example.newsapp.ui.news.NewsMainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -29,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void navigateToNewsListActivity() {
-        Intent intent = new Intent(SplashActivity.this, NewsListActivity.class);
+        Intent intent = new Intent(SplashActivity.this, NewsMainActivity.class);
         startActivity(intent);
         finish();
     }

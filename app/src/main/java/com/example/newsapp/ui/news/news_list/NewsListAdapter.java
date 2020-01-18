@@ -1,4 +1,4 @@
-package com.example.newsapp.ui.news_list_screen;
+package com.example.newsapp.ui.news.news_list;
 
 import android.view.LayoutInflater;
 import android.view.View;

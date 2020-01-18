@@ -4,6 +4,7 @@ import com.example.newsapp.repository.model.NewsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
 public interface NewsService {
@@ -11,6 +12,10 @@ public interface NewsService {
     String TOP_HEADLINES = "top-headlines";
     String EVERYTHING = "everything";
     String SOURCES = "sources";
+
+    @Headers("X-Api-Key: " + Api.apiKey)
+    @GET(TOP_HEADLINES)
+    Call<NewsResponse> getTopHeadlines(@Query("category") String category);
 
     @GET(TOP_HEADLINES)
     Call<NewsResponse> getTopHeadlines(@Query("country") String country, @Query("category") String category);

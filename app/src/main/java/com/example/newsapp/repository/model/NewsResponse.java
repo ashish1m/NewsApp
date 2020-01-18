@@ -1,11 +1,14 @@
 package com.example.newsapp.repository.model;
 
+import com.example.newsapp.db.entity.Article;
+
 import java.util.ArrayList;
+
 
 public class NewsResponse {
 
     private String totalResults;
-    private ArrayList<Articles> articles;
+    private ArrayList<Article> articles;
     private String status;
 
     public String getTotalResults() {
@@ -16,11 +19,11 @@ public class NewsResponse {
         this.totalResults = totalResults;
     }
 
-    public ArrayList<Articles> getArticles() {
+    public ArrayList<Article> getArticles() {
         return articles;
     }
 
-    public void setArticles(ArrayList<Articles> articles) {
+    public void setArticles(ArrayList<Article> articles) {
         this.articles = articles;
     }
 

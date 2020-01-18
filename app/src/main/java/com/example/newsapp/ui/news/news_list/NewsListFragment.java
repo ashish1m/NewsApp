@@ -8,13 +8,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newsapp.R;
 import com.example.newsapp.repository.Utils;
+import com.example.newsapp.repository.db.entity.Article;
+import com.example.newsapp.repository.db.entity.Category;
 import com.example.newsapp.repository.model.Articles;
+import com.example.newsapp.viewmodel.ArticleViewModel;
+import com.example.newsapp.viewmodel.CategoryViewModel;
+
+import java.util.List;
 
 public class NewsListFragment extends Fragment implements NewsListAdapter.OnItemClickListener {
 
@@ -57,7 +64,25 @@ public class NewsListFragment extends Fragment implements NewsListAdapter.OnItem
     @Override
     public void onResume() {
         super.onResume();
-        mNewsListAdapter.updateList(Utils.getNewsResponse().getArticles());
+        ArticleViewModel articleViewModel = ViewModelProviders.of(this).get(ArticleViewModel.class);
+        subscribeUi(articleViewModel.getArticles());
+//        mNewsListAdapter.updateList(Utils.getNewsResponse().getArticles());
+    }
+
+    private void subscribeUi(LiveData<List<Article>> liveData) {
+        // Update the list when the data changes
+        liveData.observe(this, articles -> {
+            if (articles != null) {
+                //mBinding.setIsLoading(false);
+                mNewsListAdapter.updateList(articles);
+//                mProductAdapter.setProductList(myProducts);
+            } else {
+//                mBinding.setIsLoading(true);
+            }
+            // espresso does not know how to wait for data binding's loop so we execute changes
+            // sync.
+//            mBinding.executePendingBindings();
+        });
     }
 
     @Override

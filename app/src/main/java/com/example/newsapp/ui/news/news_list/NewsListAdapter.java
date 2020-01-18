@@ -12,21 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.newsapp.R;
+import com.example.newsapp.repository.db.entity.Article;
 import com.example.newsapp.repository.model.Articles;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHolder> {
 
 
-    private ArrayList<Articles> mArticleList;
     private OnItemClickListener mListener;
+    private List<Article> mArticleList;
 
-    public NewsListAdapter(ArrayList<Articles> articleList) {
+    public NewsListAdapter(ArrayList<Article> articleList) {
         mArticleList = articleList;
     }
 
-    public void updateList(ArrayList<Articles> articleList) {
+    public void updateList(List<Article> articleList) {
         mArticleList = articleList;
         notifyDataSetChanged();
     }
@@ -44,12 +46,12 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Articles article = mArticleList.get(position);
+        Article article = mArticleList.get(position);
 
         holder.mNewsTitleTv.setText(article.getTitle());
         holder.mNewsDescriptionTv.setText(article.getDescription());
         Glide.with(holder.itemView)
-                .load(article.getUrlToImage())
+                .load(article.getThumbUrl())
                 .centerCrop()
                 .into(holder.mNewsImageIv);
 

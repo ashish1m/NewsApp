@@ -89,7 +89,6 @@ public class NewsListFragment extends Fragment implements NewsListAdapter.OnItem
 
     @Override
     public void onItemClick(Article article) {
-        Utils.showToastMessage(article.getTitle());
         if (mListener != null) {
             mListener.onNewsSelected(article);
         }

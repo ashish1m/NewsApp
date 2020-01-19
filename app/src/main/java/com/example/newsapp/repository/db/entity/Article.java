@@ -14,7 +14,7 @@ import java.io.Serializable;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "articles")
-public class Article implements Serializable {
+public class Article {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;

@@ -34,7 +34,8 @@ public class NewsMainActivity extends AppCompatActivity implements NewsListFragm
     }
 
     private void loadNewsDetailScreen(Article article) {
-        NewsDetailFragment newsDetailFragment = NewsDetailFragment.newInstance(article);
+        NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
+        newsDetailFragment.setArticle(article);
         loadFragment(newsDetailFragment);
     }
 

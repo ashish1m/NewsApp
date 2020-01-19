@@ -31,14 +31,6 @@ public class NewsDetailFragment extends Fragment implements View.OnClickListener
     private static final String ARTICLE_KEY = "ARTICLE";
     private Article mArticle;
 
-    public static NewsDetailFragment newInstance(Article article) {
-        NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(ARTICLE_KEY, article);
-        newsDetailFragment.setArguments(bundle);
-        return new NewsDetailFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -48,9 +40,6 @@ public class NewsDetailFragment extends Fragment implements View.OnClickListener
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (getArguments() != null){
-            mArticle = (Article) getArguments().getSerializable(ARTICLE_KEY);
-        }
         initView(view);
     }
 
@@ -107,5 +96,9 @@ public class NewsDetailFragment extends Fragment implements View.OnClickListener
                 .setChooserTitle("Share URL")
                 .setText(urlToSend)
                 .startChooser();
+    }
+
+    public void setArticle(Article article) {
+        this.mArticle = article;
     }
 }

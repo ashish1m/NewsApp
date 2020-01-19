@@ -7,7 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
-import com.example.newsapp.DataRepository;
+import com.example.newsapp.repository.DataRepository;
 import com.example.newsapp.NewsApp;
 import com.example.newsapp.repository.db.entity.Article;
 

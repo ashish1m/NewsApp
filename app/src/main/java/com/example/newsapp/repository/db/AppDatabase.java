@@ -90,7 +90,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     private void insertLatestArticles() {
                         NewsService newsService = NewsApp.getInstance().getRetrofit().create(NewsService.class);
 
-                        Call<NewsResponse> call = newsService.getTopHeadlines("general");
+                        Call<NewsResponse> call = newsService.getTopHeadlines("us", "general");
 
                         call.enqueue(new retrofit2.Callback<NewsResponse>() {
                             @Override

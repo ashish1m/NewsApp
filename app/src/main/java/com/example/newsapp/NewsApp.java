@@ -2,6 +2,7 @@ package com.example.newsapp;
 
 import android.app.Application;
 
+import com.example.newsapp.repository.DataRepository;
 import com.example.newsapp.repository.db.AppDatabase;
 import com.example.newsapp.repository.remote.Api;
 

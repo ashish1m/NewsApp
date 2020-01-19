@@ -1,4 +1,4 @@
-package com.example.newsapp;
+package com.example.newsapp.repository;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;

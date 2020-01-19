@@ -16,10 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.newsapp.R;
 import com.example.newsapp.repository.Utils;
 import com.example.newsapp.repository.db.entity.Article;
-import com.example.newsapp.repository.db.entity.Category;
-import com.example.newsapp.repository.model.Articles;
 import com.example.newsapp.viewmodel.ArticleViewModel;
-import com.example.newsapp.viewmodel.CategoryViewModel;
 
 import java.util.List;
 
@@ -28,9 +25,14 @@ public class NewsListFragment extends Fragment implements NewsListAdapter.OnItem
     private NewsListViewModel mViewModel;
     private RecyclerView mNewsListRv;
     private NewsListAdapter mNewsListAdapter;
+    private OnNewsSelectedListener mListener;
 
     public static NewsListFragment newInstance() {
         return new NewsListFragment();
+    }
+
+    public void addOnNewsSelectedListener(OnNewsSelectedListener listener) {
+        mListener = listener;
     }
 
     @Override
@@ -86,7 +88,15 @@ public class NewsListFragment extends Fragment implements NewsListAdapter.OnItem
     }
 
     @Override
-    public void onItemClick(Articles article) {
+    public void onItemClick(Article article) {
         Utils.showToastMessage(article.getTitle());
+        if (mListener != null) {
+            mListener.onNewsSelected(article);
+        }
     }
+
+    public interface OnNewsSelectedListener {
+        void onNewsSelected(Article article);
+    }
+
 }

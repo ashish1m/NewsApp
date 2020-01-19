@@ -10,19 +10,32 @@ import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 
 import com.example.newsapp.R;
+import com.example.newsapp.repository.db.entity.Article;
+import com.example.newsapp.ui.news.news_detail.NewsDetailFragment;
 import com.example.newsapp.ui.news.news_list.NewsListFragment;
 import com.example.newsapp.repository.db.entity.Category;
 import com.example.newsapp.viewmodel.CategoryViewModel;
 
 import java.util.List;
 
-public class NewsMainActivity extends AppCompatActivity {
+public class NewsMainActivity extends AppCompatActivity implements NewsListFragment.OnNewsSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_main);
-        loadFragment(NewsListFragment.newInstance());
+        loadNewsListScreen();
+    }
+
+    private void loadNewsListScreen(){
+        NewsListFragment newsListFragment = NewsListFragment.newInstance();
+        newsListFragment.addOnNewsSelectedListener(this);
+        loadFragment(newsListFragment);
+    }
+
+    private void loadNewsDetailScreen(Article article) {
+        NewsDetailFragment newsDetailFragment = NewsDetailFragment.newInstance(article);
+        loadFragment(newsDetailFragment);
     }
 
     private void loadFragment(Fragment fragment){
@@ -48,5 +61,10 @@ public class NewsMainActivity extends AppCompatActivity {
             // sync.
 //            mBinding.executePendingBindings();
         });
+    }
+
+    @Override
+    public void onNewsSelected(Article article) {
+        loadNewsDetailScreen(article);
     }
 }

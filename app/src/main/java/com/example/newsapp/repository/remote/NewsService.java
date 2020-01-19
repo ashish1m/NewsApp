@@ -13,10 +13,6 @@ public interface NewsService {
     String EVERYTHING = "everything";
     String SOURCES = "sources";
 
-    @Headers("X-Api-Key: " + Api.apiKey)
-    @GET(TOP_HEADLINES)
-    Call<NewsResponse> getTopHeadlines(@Query("category") String category);
-
     @GET(TOP_HEADLINES)
     Call<NewsResponse> getTopHeadlines(@Query("country") String country, @Query("category") String category);
 

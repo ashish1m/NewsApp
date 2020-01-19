@@ -3,7 +3,7 @@ package com.example.newsapp.repository.db.converter;
 import androidx.lifecycle.LiveData;
 import androidx.room.TypeConverter;
 
-import com.example.newsapp.DataRepository;
+import com.example.newsapp.repository.DataRepository;
 import com.example.newsapp.NewsApp;
 import com.example.newsapp.repository.db.entity.Category;
 

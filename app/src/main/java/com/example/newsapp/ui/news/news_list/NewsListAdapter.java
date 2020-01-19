@@ -67,7 +67,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
     }
 
     interface OnItemClickListener {
-        void onItemClick(Articles article);
+        void onItemClick(Article article);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -92,7 +92,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
             switch (v.getId()){
                 case R.id.cv_mainLayout:
                     if (mListener !=null){
-                        mListener.onItemClick((Articles) v.getTag());
+                        mListener.onItemClick((Article) v.getTag());
                     }
                     break;
             }

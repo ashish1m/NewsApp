@@ -13,7 +13,12 @@ import androidx.core.app.ShareCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.bumptech.glide.Glide;
 import com.example.newsapp.R;
+import com.example.newsapp.repository.Utils;
+import com.example.newsapp.repository.db.entity.Article;
+
+import java.io.Serializable;
 
 public class NewsDetailFragment extends Fragment implements View.OnClickListener {
 
@@ -23,8 +28,14 @@ public class NewsDetailFragment extends Fragment implements View.OnClickListener
     private TextView mNewsDescriptionTv;
     private TextView mNewsDatePublishedTv;
     private ImageView mShareIv;
+    private static final String ARTICLE_KEY = "ARTICLE";
+    private Article mArticle;
 
-    public static NewsDetailFragment newInstance() {
+    public static NewsDetailFragment newInstance(Article article) {
+        NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ARTICLE_KEY, article);
+        newsDetailFragment.setArguments(bundle);
         return new NewsDetailFragment();
     }
 
@@ -37,6 +48,9 @@ public class NewsDetailFragment extends Fragment implements View.OnClickListener
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (getArguments() != null){
+            mArticle = (Article) getArguments().getSerializable(ARTICLE_KEY);
+        }
         initView(view);
     }
 
@@ -45,6 +59,12 @@ public class NewsDetailFragment extends Fragment implements View.OnClickListener
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(NewsDetailViewModel.class);
         // TODO: Use the ViewModel
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
     }
 
     private void initView(View view) {
@@ -57,11 +77,25 @@ public class NewsDetailFragment extends Fragment implements View.OnClickListener
         mShareIv.setOnClickListener(this);
     }
 
+    private void updateUI() {
+        if (mArticle != null){
+            mNewsTitleTv.setText(mArticle.getTitle());
+            mNewsDescriptionTv.setText(mArticle.getDescription());
+            mNewsDatePublishedTv.setText(mArticle.getPublishedTime());
+            Glide.with(this)
+                    .load(mArticle.getThumbUrl())
+                    .centerCrop()
+                    .into(mNewsImageIv);
+        } else {
+            Utils.showToastMessage("Unable to load news Data.");
+        }
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_share:
-                fireShareIntent("https://www.google.com");
+                fireShareIntent(mArticle.getUrl());
             break;
         }
     }

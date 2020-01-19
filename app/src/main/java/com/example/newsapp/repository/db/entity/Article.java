@@ -9,10 +9,12 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "articles")
-public class Article {
+public class Article implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;

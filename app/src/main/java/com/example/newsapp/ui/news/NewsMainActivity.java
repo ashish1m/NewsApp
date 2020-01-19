@@ -65,6 +65,11 @@ public class NewsMainActivity extends AppCompatActivity implements NewsListFragm
     }
 
     @Override
+    public void onBackPressed() {
+        loadNewsListScreen();
+    }
+
+    @Override
     public void onNewsSelected(Article article) {
         loadNewsDetailScreen(article);
     }

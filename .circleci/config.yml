@@ -9,7 +9,10 @@ jobs:
         
     steps:
       - checkout
+      - run:
+         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+         command: sudo chmod +x ./gradlew
       
       - run:
-          # Command to build android project
+          name: Gradlew build #Command to build android project.
           command: ./gradlew build

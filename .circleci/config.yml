@@ -11,5 +11,5 @@ jobs:
       - checkout
       
       - run:
-          // Command to build android project
+          # Command to build android project
           command: ./gradlew build

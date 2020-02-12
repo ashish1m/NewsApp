@@ -9,5 +9,7 @@ jobs:
         
     steps:
       - checkout
+      
       - run:
+          // Command to build android project
           command: ./gradlew build

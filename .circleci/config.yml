@@ -33,8 +33,14 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
+          
+      - store_artifacts:
+          name: Storing apk artifact
+          path: app\build\outputs\apk\debug
+          destination: artifacts
       
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
+          name: Building reports
           path: app/build/reports
           destination: reports
       

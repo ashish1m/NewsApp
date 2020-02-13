@@ -36,7 +36,7 @@ jobs:
           
       - store_artifacts:
           name: Storing apk artifact
-          path: app\build\outputs\apk\debug
+          path: app/build/outputs/apk
           destination: artifacts
       
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
